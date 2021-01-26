@@ -42,6 +42,10 @@ public class SellerDetails extends BaseModel {
 	
 	private String price;
 	
+	private String state;
+	
+	private String city;
+	
 	@OneToMany(mappedBy = "sellerdetail")
 	private List<SellerMedia> sellerMedia;
 
@@ -116,13 +120,32 @@ public class SellerDetails extends BaseModel {
 	public void setSellerMedia(List<SellerMedia> sellerMedia) {
 		this.sellerMedia = sellerMedia;
 	}
+	
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
 
 	@Override
 	public String toString() {
 		return "SellerDetails [name=" + name + ", mobileNumber=" + mobileNumber + ", emailId=" + emailId
 				+ ", propertyType=" + propertyType + ", addressDetails=" + addressDetails + ", description="
-				+ description + ", status=" + status + ", price=" + price + ", sellerMedia=" + sellerMedia + "]";
-	} 
+				+ description + ", status=" + status + ", price=" + price + ", state=" + state + ", city=" + city
+				+ ", sellerMedia=" + sellerMedia + "]";
+	}
+
+
 
 	
 	

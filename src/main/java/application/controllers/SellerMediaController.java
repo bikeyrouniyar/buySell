@@ -21,23 +21,23 @@ public class SellerMediaController {
 	@Autowired
 	private ReadFileName readFile;
 	
-	@PostMapping("/save-image")
-	public ResponseEntity<?> saveSellerDetails() throws Exception{
-			String response=selerMedia.SaveImageDetails();
-			return new ResponseEntity<String>(response,HttpStatus.CREATED);
-	}
-	
-	@GetMapping("/read")
-	public String read() throws Exception {
-	return	selerMedia.SaveImageDetails();
-	}
-	
-	
-	@GetMapping("/download")
-	public String download() throws Exception {
-	return	selerMedia.downloadImages();
-	}
-	
+//	@PostMapping("/save-image")
+//	public ResponseEntity<?> saveSellerDetails() throws Exception{
+//			String response=selerMedia.SaveImageDetails();
+//			return new ResponseEntity<String>(response,HttpStatus.CREATED);
+//	}
+//	
+//	@GetMapping("/read")
+//	public String read() throws Exception {
+//	return	selerMedia.SaveImageDetails();
+//	}
+//	
+//	
+//	@GetMapping("/download")
+//	public String download() throws Exception {
+//	return	selerMedia.downloadImages();
+//	}
+//	
 	
 	
 	

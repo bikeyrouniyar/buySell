@@ -14,6 +14,7 @@ public class AddressDetails implements Serializable {
 	private String pinCode;
 	private double latitude;
 	private double longitude;
+	private String wardNumber;
 
 	public String getHouseNo() {
 		return houseNo;
@@ -87,11 +88,20 @@ public class AddressDetails implements Serializable {
 		this.longitude = longitude;
 	}
 
+	public String getWardNumber() {
+		return wardNumber;
+	}
+
+	public void setWardNumber(String wardNumber) {
+		this.wardNumber = wardNumber;
+	}
+
 	@Override
 	public String toString() {
 		return "AddressDetails [houseNo=" + houseNo + ", streetName=" + streetName + ", areaName=" + areaName
 				+ ", cityName=" + cityName + ", country=" + country + ", State=" + State + ", pinCode=" + pinCode
-				+ ", latitude=" + latitude + ", longitude=" + longitude + "]";
+				+ ", latitude=" + latitude + ", longitude=" + longitude + ", wardNumber=" + wardNumber + "]";
 	}
+
 
 }

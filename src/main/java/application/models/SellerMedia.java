@@ -1,7 +1,5 @@
 package application.models;
 
-import java.util.Arrays;
-
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -10,18 +8,18 @@ import javax.persistence.ManyToOne;
 @Entity
 public class SellerMedia extends BaseModel {
 	@Lob
-	private byte[] images;
+	private String images;
 	private String videos;
 	
 	@ManyToOne
 	@JoinColumn(name="seller_id", nullable = false)
 	private SellerDetails sellerdetail;
 
-	public byte[] getImages() {
+	public String getImages() {
 		return images;
 	}
 
-	public void setImages(byte[] images) {
+	public void setImages(String images) {
 		this.images = images;
 	}
 
@@ -43,9 +41,10 @@ public class SellerMedia extends BaseModel {
 
 	@Override
 	public String toString() {
-		return "SellerMedia [images=" + Arrays.toString(images) + ", videos=" + videos + ", sellerdetail="
-				+ sellerdetail + "]";
+		return "SellerMedia [images=" + images + ", videos=" + videos + ", sellerdetail=" + sellerdetail + "]";
 	}
+
+	
 
 	
 	
