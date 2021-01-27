@@ -50,6 +50,19 @@ public class SellerDetailController {
 
 	}
 	
+	@GetMapping("/get/city")
+	public ResponseEntity<?> getByCity(@RequestParam String city){
+			try {
+			logger.info("statename:====>>: " + city);
+			List<SellerInfo> response = sellerDetail.getByCity(city);
+			return new ResponseEntity<List<SellerInfo>>(response, HttpStatus.CREATED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+	
 	@GetMapping("/getall")
 	public ResponseEntity<?> getByState(){
 			try {
