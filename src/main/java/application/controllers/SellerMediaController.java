@@ -18,8 +18,6 @@ public class SellerMediaController {
 	@Autowired
 	private SellerMediaService selerMedia;
 	
-	@Autowired
-	private ReadFileName readFile;
 	
 //	@PostMapping("/save-image")
 //	public ResponseEntity<?> saveSellerDetails() throws Exception{
