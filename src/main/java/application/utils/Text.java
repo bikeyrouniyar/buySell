@@ -4,7 +4,7 @@ import java.io.File;
 
 public class Text {
 
-	static final File dir = new File("/home/bikey/houseImage");
+	static final File dir = new File("images/");
 	
 	public static void main(String[] args) {
 
@@ -13,7 +13,7 @@ public class Text {
 		pathNames=dir.list();
 		
 		for(String pathName : pathNames) {
-			if(pathName.endsWith("jpg")) {
+			if(pathName.endsWith("jpg") ||pathName.endsWith("jpeg")) {
 			System.out.println(pathName);
 			String[] split=pathName.split("_",2);
 			System.out.println("split: " + split[0]);

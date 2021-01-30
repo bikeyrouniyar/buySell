@@ -16,6 +16,8 @@ public interface SellerMediaDao extends JpaRepository<SellerMedia, Long> {
 	
 	public SellerMedia findByIdAndIsDeleted(Long id,boolean isDeleted);
 	public List<SellerMedia> findBySellerdetailAndIsDeleted(SellerDetails sellerdetail,boolean isDeleted);
+	public SellerMedia  findByImagesAndIsDeleted(String images,boolean isDeleted);
+	
 	
 
 }

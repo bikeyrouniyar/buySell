@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.apache.tomcat.jni.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -74,6 +75,7 @@ public class SellerDetailsService {
 					try {
 						String[] sellerImageId = fileName.split("_", 2);
 						setSellerMedia(sellerImageId[0], fileName);
+						ReadFileName.deleteFile(fileName);
 					} catch (Exception e) {
 						e.printStackTrace();
 
@@ -83,17 +85,24 @@ public class SellerDetailsService {
 		}
 	}
 
-	public void setSellerMedia(String sellerId, String fileName) {
+	
+	public void setSellerMedia(String sellerId, String fileName) throws Exception{
 		long id = Long.parseLong(sellerId);
-		SellerDetails sellerDetail = sellerDetailDao.findByIdAndIsDeleted(id, false);
-		if (sellerDetail != null) {
-			SellerMedia sellerMedia = new SellerMedia();
-			sellerMedia.setSellerdetail(sellerDetail);
-			logger.info("sellerDetail id:=:  " + sellerDetail.getId());
-			sellerMedia.setImages(fileName);
-			sellerMediaDao.save(sellerMedia);
+		SellerMedia imageExists = sellerMediaDao.findByImagesAndIsDeleted(fileName, false);
+		if (imageExists == null) {
+			SellerDetails sellerDetail = sellerDetailDao.findByIdAndIsDeleted(id, false);
+			if (sellerDetail != null) {
+				SellerMedia sellerMedia = new SellerMedia();
+				sellerMedia.setSellerdetail(sellerDetail);
+				logger.info("sellerDetail id:=:  " + sellerDetail.getId());
+				sellerMedia.setImages(fileName);
+				sellerMediaDao.save(sellerMedia);
+			}
 		}
-
+		else {
+			logger.info("image already exists: ");
+		 
+		}
 	}
 
 	public void setSellerInfo(SellerDetails sellerDetail, List<SellerInfo> sellerInfoList) {
@@ -106,12 +115,12 @@ public class SellerDetailsService {
 		sellerInfo.setImagesUrl(imagesList(sellerDetail));
 		sellerInfoList.add(sellerInfo);
 	}
-	
-	public List<String> imagesList(SellerDetails sellerDetail){
-		List<String> images=new ArrayList<String>();
-		List<SellerMedia> mediaDetails= sellerMediaDao.findBySellerdetailAndIsDeleted(sellerDetail, false);
-		if(mediaDetails!=null && !mediaDetails.isEmpty()) {
-			for(SellerMedia sellerMedia: mediaDetails) {
+
+	public List<String> imagesList(SellerDetails sellerDetail) {
+		List<String> images = new ArrayList<String>();
+		List<SellerMedia> mediaDetails = sellerMediaDao.findBySellerdetailAndIsDeleted(sellerDetail, false);
+		if (mediaDetails != null && !mediaDetails.isEmpty()) {
+			for (SellerMedia sellerMedia : mediaDetails) {
 				images.add(sellerMedia.getImages());
 			}
 		}
