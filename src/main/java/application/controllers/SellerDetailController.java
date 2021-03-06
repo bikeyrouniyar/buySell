@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import application.pojo.SellerInfo;
 import application.services.SellerDetailsService;
 @RestController
 @RequestMapping("/seller")
+@CrossOrigin(origins = "https://aigeniestate.web.app/")
 public class SellerDetailController {
 
 	Logger logger = Logger.getLogger(SellerDetailController.class.getName());
@@ -69,6 +71,19 @@ public class SellerDetailController {
 				
 			List<SellerInfo> response = sellerDetail.getall();
 			return new ResponseEntity<List<SellerInfo>>(response, HttpStatus.CREATED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+	
+	@GetMapping("/welcome")
+	
+	public ResponseEntity<?> welcome(){
+			try {
+				
+			return new ResponseEntity<String>("hello world FE", HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
