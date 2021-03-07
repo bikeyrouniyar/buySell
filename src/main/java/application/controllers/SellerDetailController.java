@@ -19,7 +19,7 @@ import application.pojo.SellerInfo;
 import application.services.SellerDetailsService;
 @RestController
 @RequestMapping("/seller")
-@CrossOrigin(origins = "https://aigeniestate.web.app/")
+@CrossOrigin(origins = "https://aigeniestate.web.app")
 public class SellerDetailController {
 
 	Logger logger = Logger.getLogger(SellerDetailController.class.getName());
@@ -44,7 +44,7 @@ public class SellerDetailController {
 			try {
 			logger.info("statename:====>>: " + state);
 			List<SellerInfo> response = sellerDetail.getByState(state);
-			return new ResponseEntity<List<SellerInfo>>(response, HttpStatus.CREATED);
+			return new ResponseEntity<List<SellerInfo>>(response, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -57,7 +57,7 @@ public class SellerDetailController {
 			try {
 			logger.info("statename:====>>: " + city);
 			List<SellerInfo> response = sellerDetail.getByCity(city);
-			return new ResponseEntity<List<SellerInfo>>(response, HttpStatus.CREATED);
+			return new ResponseEntity<List<SellerInfo>>(response, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -70,7 +70,20 @@ public class SellerDetailController {
 			try {
 				
 			List<SellerInfo> response = sellerDetail.getall();
-			return new ResponseEntity<List<SellerInfo>>(response, HttpStatus.CREATED);
+			return new ResponseEntity<List<SellerInfo>>(response, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+	
+	@GetMapping("/get")
+	public ResponseEntity<?> getById(@RequestParam String id){
+			try {
+				
+			List<SellerInfo> response = sellerDetail.getById(id);
+			return new ResponseEntity<List<SellerInfo>>(response, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

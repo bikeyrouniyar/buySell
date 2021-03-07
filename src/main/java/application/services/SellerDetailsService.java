@@ -84,8 +84,7 @@ public class SellerDetailsService {
 		}
 	}
 
-	
-	public void setSellerMedia(String sellerId, String fileName) throws Exception{
+	public void setSellerMedia(String sellerId, String fileName) throws Exception {
 		long id = Long.parseLong(sellerId);
 		SellerMedia imageExists = sellerMediaDao.findByImagesAndIsDeleted(fileName, false);
 		if (imageExists == null) {
@@ -97,15 +96,15 @@ public class SellerDetailsService {
 				sellerMedia.setImages(fileName);
 				sellerMediaDao.save(sellerMedia);
 			}
-		}
-		else {
+		} else {
 			logger.info("image already exists: ");
-		 
+
 		}
 	}
 
 	public void setSellerInfo(SellerDetails sellerDetail, List<SellerInfo> sellerInfoList) {
 		SellerInfo sellerInfo = new SellerInfo();
+		sellerInfo.setId(sellerDetail.getId());
 		sellerInfo.setSellerName(sellerDetail.getName());
 		sellerInfo.setDescription(sellerDetail.getDescription());
 		sellerInfo.setPrice(sellerDetail.getPrice());
@@ -165,5 +164,30 @@ public class SellerDetailsService {
 		}
 		logger.info("seller info by city=>: " + sellerInfoList);
 		return sellerInfoList;
+	}
+
+	public List<SellerInfo> getById(String id) {
+		logger.info("get by id " + id);
+		List<SellerInfo> sellerInfoList = new ArrayList<SellerInfo>();
+		try {
+			// id=(long) id;
+			Long uid=Long.parseLong(id);
+			logger.info("uid " + uid);
+			SellerDetails sellerDetails = sellerDetailDao.findByIdAndIsDeleted(uid, false);
+			//SellerDetails sellerDetails = sellerDetailDao.getOne(uid);
+			
+		//	logger.info("seller detail====>>>> " + sellerDetails);
+			if (sellerDetails != null) {
+			//	logger.info("sellerinfo sellerDetails==: " + sellerDetails);
+
+				setSellerInfo(sellerDetails, sellerInfoList);
+
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+		logger.info("seller info get all=>: " + sellerInfoList);
+		return sellerInfoList;
+
 	}
 }

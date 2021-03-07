@@ -4,6 +4,7 @@ import java.util.List;
 
 public class SellerInfo {
 	
+	private long Id;
 	private String sellerName;
 	private String propertyType;
 	private String description;
@@ -11,6 +12,14 @@ public class SellerInfo {
 	private List<String> imagesUrl;
 	private List<String> videosUrl;
 	private AddressDetails addressDetails;
+	
+	
+	public long getId() {
+		return Id;
+	}
+	public void setId(long id) {
+		Id = id;
+	}
 	public String getSellerName() {
 		return sellerName;
 	}
@@ -55,10 +64,12 @@ public class SellerInfo {
 	}
 	@Override
 	public String toString() {
-		return "SellerInfo [sellerName=" + sellerName + ", propertyType=" + propertyType + ", description="
-				+ description + ", price=" + price + ", imagesUrl=" + imagesUrl + ", videosUrl=" + videosUrl
-				+ ", addressDetails=" + addressDetails + "]";
+		return "SellerInfo [Id=" + Id + ", sellerName=" + sellerName + ", propertyType=" + propertyType
+				+ ", description=" + description + ", price=" + price + ", imagesUrl=" + imagesUrl + ", videosUrl="
+				+ videosUrl + ", addressDetails=" + addressDetails + "]";
 	}
+	
+	
 	
 	
 	

@@ -10,6 +10,8 @@ public interface SellerDetailsDao extends JpaRepository<SellerDetails, Long>{
 	
 	public SellerDetails findByIdAndIsDeleted(Long id,boolean isDeleted);
 	
+
+	
 	public List<SellerDetails> findByStateAndIsDeleted(String state,boolean isDeleted);
 	
 	public List<SellerDetails> findByCityAndIsDeleted(String state,boolean isDeleted);
